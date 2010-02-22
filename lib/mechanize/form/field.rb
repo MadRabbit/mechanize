@@ -20,7 +20,11 @@ class Mechanize
       end
 
       def query_value
-        [[@name, @value || '']]
+        if @value.is_a?(Array)
+          @value.collect{ |v| [@name, v || '']}
+        else
+          [[@name, @value || '']]
+        end
       end
 
       def <=> other
